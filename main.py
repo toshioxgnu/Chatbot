@@ -30,7 +30,7 @@ labels = sorted(labels)
 training =[]
 output = []
 out_empty=[0 for _ in range(len(labels))]
-for doc in ennumerate(docs_x):
+for x, doc in enumerate(docs_x):
     bag = []
     wrds = [stemmer.stem(w) for w in doc]
 
@@ -44,8 +44,22 @@ for doc in ennumerate(docs_x):
 
     training.append(bag)
     output.append(output_row)
+
 training = numpy.array(training)
-output = np.array(output)
+output = numpy.array(output)
 
 training=numpy.array(training)
 output = numpy.array(output)
+
+# red neural y sus capas
+tensorflow.reset_default_graph()
+net = tflearn.input_data(shape=[None, len(training[0])])
+net = tflearn.fully_connected(net, 8)
+net = tflearn.fully_connected(net, 8)
+net = tflearn.fully_connected(net, len(output[0]), activation="softmax")
+net = tflearn.regression(net)
+
+model = tflearn.DNN(net)
+
+model.fit(training, output, n_epoch=1000, batch_size=8, show_metric=True)
+model.save("model.tflearn")
