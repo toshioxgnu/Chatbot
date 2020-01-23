@@ -1,2 +1,2 @@
-model_checkpoint_path: "/home/jose/Chatbot/model.tflearn"
-all_model_checkpoint_paths: "/home/jose/Chatbot/model.tflearn"
+model_checkpoint_path: "/home/jose/proyectos/Chatbot/model.tflearn"
+all_model_checkpoint_paths: "/home/jose/proyectos/Chatbot/model.tflearn"
